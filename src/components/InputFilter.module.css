@@ -1,0 +1,56 @@
+.form__control {
+        padding: 1em;
+        width: 100%;
+        position: relative;
+}
+
+.select__control {
+    appearance: none;
+    background: var(--color-accent);
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--color-text);
+    padding: 1em;
+    outline: none;
+}
+
+.arrow {
+    background: var(--color-accent);
+    border-radius: var(--border-radius);
+    position: relative;
+    left: 120px;
+    top: -40px;
+    height: 40px;
+    width: 40px;
+}
+.arrow::before, .arrow::after {
+    content: "";
+    position: absolute;
+    bottom: 15px;
+    width: 0.15rem;
+    height: 20%;
+    transition: all 0.5s;
+}
+.arrow::before {
+    left: 20px;
+    transform: rotate(45deg);
+    background: var(--color-text);
+}
+.arrow::after {
+    left:25px;
+    transform: rotate(-45deg);
+    background: var(--color-text);
+}
+.open .arrow::before {
+    left: -5px;
+    transform: rotate(-45deg);
+}
+.open .arrow::after {
+    left: 5px;
+    transform: rotate(45deg);
+}
+
+.option__control {
+    border-radius: var(--border-radius);
+    outline: none;
+}

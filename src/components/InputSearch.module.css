@@ -1,0 +1,33 @@
+.form__control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    width: 100%;
+    position: relative;
+}
+
+.input__control {
+    background: var(--color-accent);
+    border: none;
+    border-radius: var(--border-radius);
+    flex-grow: 2;
+    padding: 1em;
+    padding-left: 6em;
+}
+
+.label__control {
+    position: absolute;
+    left: 4em;
+    margin-right: -1em;
+    font-size: 14px;
+    z-index: 2;
+}
+
+::placeholder,
+.input__control {
+    color: var(--color-input);
+}
+
+
+

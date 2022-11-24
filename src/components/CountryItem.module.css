@@ -1,0 +1,32 @@
+.list__item {
+    background: var(--color-accent);
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+.image__container {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    background: white;
+    height: 50%;
+    width: 100%;
+}
+
+.country__description__container {
+    line-height: 2;
+    padding: 2em;
+}
+
+.country__heading {
+    padding-bottom: 1em;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.country__desc {
+    font-weight: 600
+}
+
+.country__desc span {
+    font-weight: 300;
+}

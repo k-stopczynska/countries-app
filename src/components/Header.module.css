@@ -1,0 +1,24 @@
+.header {
+  background: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-home-size);
+  padding: 2em 1em;
+  height: 70px;
+  width: 100%;
+}
+
+.main__heading {
+  font-size: var(--font-home-size);
+  font-weight: 800;
+}
+
+.button__switch {
+  background: var(--color-accent);
+  border: none;
+  color: var(--color-text);
+  font-weight: 300;
+  display: flex;
+  gap: .5em;
+}
