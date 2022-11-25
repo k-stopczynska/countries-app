@@ -73,8 +73,8 @@ const CountriesList = (props) => {
         countries
           .filter(
             (country) =>
-              country.name.toLowerCase() ===
-              props.searchedCountry.trim().toLowerCase()
+              country.name.toLowerCase().includes(
+              props.searchedCountry.trim().toLowerCase())
           )
           .map((country) => (
             <CountryItem
