@@ -7,16 +7,9 @@ import "./App.css";
 
 function App() {
   const [region, setRegion] = useState("");
-  const [countriesList, setCountriesList] = useState([]);
-
-  const onLoadCountriesList = (countries) => {
-    setCountriesList(countries);
-  };
 
   const onChangingFilter = (filteredRegion) => {
     setRegion(filteredRegion);
-    const filteredList = countriesList.filter((countryItem) => countryItem.region === filteredRegion);
-    console.log(filteredList)
   };
 
   return (
@@ -25,7 +18,7 @@ function App() {
       <main>
         <InputSearch />
         <InputFilter onChangingFilter={onChangingFilter}></InputFilter>
-        <CountriesList toFilterByRegion={onLoadCountriesList}></CountriesList>
+        <CountriesList filterRegion={region}></CountriesList>
       </main>
     </div>
   );

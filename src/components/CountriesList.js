@@ -25,7 +25,7 @@ const CountriesList = (props) => {
           capital: country.capital,
         });
         setCountries(countriesToRender);
-        props.toFilterByRegion(countriesToRender);
+        //props.toFilterByRegion(countriesToRender);
       }
     } catch (error) {
       setError(error.message);
@@ -37,10 +37,10 @@ const CountriesList = (props) => {
     fetchCountries();
   }, []);
 
-
   return (
     <ul className={classes.list}>
       {!isLoading &&
+        props.filterRegion === "" &&
         countries.map((country) => (
           <CountryItem
             flag={country.flag}
@@ -51,6 +51,21 @@ const CountriesList = (props) => {
             capital={country.capital}
           ></CountryItem>
         ))}
+
+      {!isLoading &&
+        props.filterRegion !== "" &&
+        countries
+          .filter((country) => country.region === props.filterRegion)
+          .map((country) => (
+            <CountryItem
+              flag={country.flag}
+              key={country.name}
+              name={country.name}
+              population={country.population}
+              region={country.region}
+              capital={country.capital}
+            ></CountryItem>
+          ))}
     </ul>
   );
 };
