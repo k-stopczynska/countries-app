@@ -24,7 +24,7 @@
   --color-input: hsl(0, 0%, 52%);
 }
 
-.App {
+#App {
   background-color: var(--color-background);
   color: var(--color-text);
   font-family: var(--font-family);

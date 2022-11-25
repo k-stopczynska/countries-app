@@ -14,7 +14,7 @@
   font-weight: 800;
 }
 
-.button__switch {
+button {
   background: var(--color-accent);
   border: none;
   color: var(--color-text);

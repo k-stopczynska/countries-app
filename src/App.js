@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Header from "./components/Header";
 import InputSearch from "./components/InputSearch";
 import InputFilter from "./components/InputFilter";
 import CountriesList from "./components/CountriesList";
+import ThemeContext from "./contexts/theme-context";
 import "./App.css";
 
 function App() {
+  const themeCtx = useContext(ThemeContext)
   const [region, setRegion] = useState("");
   const [country, setCountry] = useState("");
 
@@ -20,7 +22,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div id="App" className={themeCtx.lightMode ? 'lightMode' : ''}>
       <Header />
       <main>
         <InputSearch onSearching={onSearching} />
