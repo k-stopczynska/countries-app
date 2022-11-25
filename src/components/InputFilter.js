@@ -19,7 +19,7 @@ const InputFilter = (props) => {
         name="filter"
         id="filter"
       >
-        <option className={classes.option__control}>Filter By Region</option>
+        <option className={classes.option__control} value="">Filter By Region</option>
         <option className={classes.option__control} value="Africa">
           Africa
         </option>

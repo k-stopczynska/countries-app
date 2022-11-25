@@ -25,10 +25,10 @@ const CountriesList = (props) => {
           capital: country.capital,
         });
         setCountries(countriesToRender);
-        //props.toFilterByRegion(countriesToRender);
       }
     } catch (error) {
       setError(error.message);
+      console.log(error);
     }
     setIsLoading(false);
   }
@@ -41,6 +41,7 @@ const CountriesList = (props) => {
     <ul className={classes.list}>
       {!isLoading &&
         props.filterRegion === "" &&
+        props.searchedCountry === "" &&
         countries.map((country) => (
           <CountryItem
             flag={country.flag}
@@ -56,6 +57,25 @@ const CountriesList = (props) => {
         props.filterRegion !== "" &&
         countries
           .filter((country) => country.region === props.filterRegion)
+          .map((country) => (
+            <CountryItem
+              flag={country.flag}
+              key={country.name}
+              name={country.name}
+              population={country.population}
+              region={country.region}
+              capital={country.capital}
+            ></CountryItem>
+          ))}
+
+      {!isLoading &&
+        props.searchedCountry !== "" &&
+        countries
+          .filter(
+            (country) =>
+              country.name.toLowerCase() ===
+              props.searchedCountry.trim().toLowerCase()
+          )
           .map((country) => (
             <CountryItem
               flag={country.flag}

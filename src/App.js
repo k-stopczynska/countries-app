@@ -7,18 +7,25 @@ import "./App.css";
 
 function App() {
   const [region, setRegion] = useState("");
+  const [country, setCountry] = useState("");
 
   const onChangingFilter = (filteredRegion) => {
     setRegion(filteredRegion);
+    setCountry('');
+  };
+
+  const onSearching = (searchedCountry) => {
+    setCountry(searchedCountry);
+    setRegion('');
   };
 
   return (
     <div className="App">
       <Header />
       <main>
-        <InputSearch />
+        <InputSearch onSearching={onSearching} />
         <InputFilter onChangingFilter={onChangingFilter}></InputFilter>
-        <CountriesList filterRegion={region}></CountriesList>
+        <CountriesList filterRegion={region} searchedCountry={country}></CountriesList>
       </main>
     </div>
   );
