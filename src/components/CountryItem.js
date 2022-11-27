@@ -2,8 +2,9 @@ import React from 'react';
 import classes from './CountryItem.module.css';
 
 const CountryItem = (props) => {
+
     return (
-        <li className={classes.list__item}>
+        <li onClick={props.countryCardHandler} className={classes.list__item} id={props.name}>
             <div className={classes.image__container}><img src={props.flag} alt="flag"></img></div>
             <div className={classes.country__description__container}>
             <h2 className={classes.country__heading}>{props.name}</h2>
