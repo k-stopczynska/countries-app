@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./CountryCard.module.css";
 
 const CountryCard = (props) => {
-    console.log('trying to render')
+    console.log(props.nativeName)
   return (
     <div className={classes.card}>
       <button>Back</button>
@@ -33,10 +33,10 @@ const CountryCard = (props) => {
           Currencies: <span>{props.currencies}</span>
         </p>
         <p className={classes.country__desc}>
-          Languages: <span>languages</span>
+          Languages: <span>{props.languages}</span>
         </p>
         <h3>Border countries</h3>
-        <button>border</button>
+        <button>{props.borders}</button>
       </div>
     </div>
   );

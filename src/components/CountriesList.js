@@ -7,8 +7,19 @@ const CountriesList = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [countries, setCountries] = useState([]);
   const [error, setError] = useState(null);
-  const [id, setId] = useState('');
+  const [id, setId] = useState("");
 
+  const getArray = (array) => {
+    return array === undefined ? null : array.join(', ')
+  }
+
+  const getNestedObject = (object) => {
+    return object === null || object === undefined ? '' : Object.values(object).join(', ');
+  }
+
+  const getDeepNestedObject = (object) => {
+    return object === null || object === undefined ? '' : Object.values(object).map((entry) => Object.values(entry)[0]).join(', ')
+  }
 
   async function fetchCountries() {
     setIsLoading(true);
@@ -18,23 +29,23 @@ const CountriesList = (props) => {
         throw new Error("something went wrong...");
       }
       const data = await response.json();
-      console.log(data);
       const countriesToRender = [];
       for (const country of data) {
         countriesToRender.push({
           flag: country.flags.png,
           name: country.name.official,
-          nativeName: country.name.nativeName,
+          nativeName: getDeepNestedObject(country.name.nativeName),
           population: country.population,
           region: country.region,
           subregion: country.subregion,
           capital: country.capital,
-          languages: country.languages,
-          currencies: country.currencies,
-          borders: country.borders,
-          topLevelDomain: country.tld,
+          languages: getNestedObject(country.languages),
+          currencies: getDeepNestedObject(country.currencies),
+          borders: getArray(country.borders),
+          topLevelDomain: getNestedObject(country.tld),
         });
         setCountries(countriesToRender);
+        console.log([...countriesToRender])
       }
     } catch (error) {
       setError(error.message);
@@ -49,8 +60,8 @@ const CountriesList = (props) => {
 
   const countryCardHandler = (e) => {
     const countryId = e.currentTarget.id;
-  setId(countryId);
-  console.log(id);
+    setId(countryId);
+    console.log(id);
   };
 
   return (
@@ -104,25 +115,27 @@ const CountriesList = (props) => {
             ></CountryItem>
           ))}
 
-
-{!isLoading && id &&
-countries.filter((country) => (country.name === id)).map((country) => (
-        <CountryCard
-          flag={country.flag}
-          key={country.name}
-          name={country.name}
-          population={country.population}
-          region={country.region}
-          capital={country.capital}
-          nativeName={country.name.nativeName}
-          subregion={country.subregion}
-        //   languages={country.languages}
-          currencies={country.currencies.name}
-          //borders={country.borders}
-          topLevelDomain={country.tld}
-        ></CountryCard>
-        ))}
-        </ul>
+      {!isLoading &&
+        id &&
+        countries
+          .filter((country) => country.name === id)
+          .map((country) => (
+            <CountryCard
+              flag={country.flag}
+              key={country.name}
+              name={country.name}
+              population={country.population}
+              region={country.region}
+              capital={country.capital}
+              nativeName={country.nativeName}
+              subregion={country.subregion}
+               languages={country.languages}
+              currencies={country.currencies}
+              borders={country.borders}
+              topLevelDomain={country.topLevelDomain}
+            ></CountryCard>
+          ))}
+    </ul>
   );
 };
 
