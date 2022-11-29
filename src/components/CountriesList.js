@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CountryItem from "./CountryItem";
 import CountryCard from "./CountryCard";
+import Modal from './Modal';
 import classes from "./CountriesList.module.css";
 
 const CountriesList = (props) => {
@@ -8,18 +9,25 @@ const CountriesList = (props) => {
   const [countries, setCountries] = useState([]);
   const [error, setError] = useState(null);
   const [id, setId] = useState("");
+  const [open, setOpen] = useState(false);
 
   const getArray = (array) => {
-    return array === undefined ? null : array.join(', ')
-  }
+    return array === undefined ? 'No border countries' : array.join(", ");
+  };
 
   const getNestedObject = (object) => {
-    return object === null || object === undefined ? '' : Object.values(object).join(', ');
-  }
+    return object === null || object === undefined
+      ? ""
+      : Object.values(object).join(", ");
+  };
 
   const getDeepNestedObject = (object) => {
-    return object === null || object === undefined ? '' : Object.values(object).map((entry) => Object.values(entry)[0]).join(', ')
-  }
+    return object === null || object === undefined
+      ? ""
+      : Object.values(object)
+          .map((entry) => Object.values(entry)[0])
+          .join(", ");
+  };
 
   async function fetchCountries() {
     setIsLoading(true);
@@ -32,6 +40,7 @@ const CountriesList = (props) => {
       const countriesToRender = [];
       for (const country of data) {
         countriesToRender.push({
+          key: country.name.official,
           flag: country.flags.png,
           name: country.name.official,
           nativeName: getDeepNestedObject(country.name.nativeName),
@@ -45,11 +54,10 @@ const CountriesList = (props) => {
           topLevelDomain: getNestedObject(country.tld),
         });
         setCountries(countriesToRender);
-        console.log([...countriesToRender])
       }
     } catch (error) {
       setError(error.message);
-      console.log(error);
+      return error;
     }
     setIsLoading(false);
   }
@@ -61,7 +69,7 @@ const CountriesList = (props) => {
   const countryCardHandler = (e) => {
     const countryId = e.currentTarget.id;
     setId(countryId);
-    console.log(id);
+    setOpen(true);
   };
 
   return (
@@ -87,6 +95,7 @@ const CountriesList = (props) => {
           .filter((country) => country.region === props.filterRegion)
           .map((country) => (
             <CountryItem
+            countryCardHandler={countryCardHandler}
               flag={country.flag}
               key={country.name}
               name={country.name}
@@ -106,6 +115,7 @@ const CountriesList = (props) => {
           )
           .map((country) => (
             <CountryItem
+              countryCardHandler={countryCardHandler}
               flag={country.flag}
               key={country.name}
               name={country.name}
@@ -115,25 +125,27 @@ const CountriesList = (props) => {
             ></CountryItem>
           ))}
 
-      {!isLoading &&
-        id &&
+      {!isLoading && 
+        open &&
         countries
           .filter((country) => country.name === id)
           .map((country) => (
+          <Modal open={setOpen}>{
             <CountryCard
               flag={country.flag}
-              key={country.name}
+              key={country.key}
               name={country.name}
               population={country.population}
               region={country.region}
               capital={country.capital}
               nativeName={country.nativeName}
               subregion={country.subregion}
-               languages={country.languages}
+              languages={country.languages}
               currencies={country.currencies}
               borders={country.borders}
               topLevelDomain={country.topLevelDomain}
             ></CountryCard>
+          }</Modal>
           ))}
     </ul>
   );

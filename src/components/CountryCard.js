@@ -1,11 +1,12 @@
 import React from "react";
+import Button from '../UI/Button';
 import classes from "./CountryCard.module.css";
 
 const CountryCard = (props) => {
-    console.log(props.nativeName)
+    const borders = props.borders.split(',');
+    console.log(borders)
   return (
-    <div className={classes.card}>
-      <button>Back</button>
+    <React.Fragment>
       <div className={classes.image__container}>
         <img src={props.flag} alt="flag"></img>
       </div>
@@ -36,9 +37,9 @@ const CountryCard = (props) => {
           Languages: <span>{props.languages}</span>
         </p>
         <h3>Border countries</h3>
-        <button>{props.borders}</button>
+       {borders.map((border) => (<Button>{border.trim()}</Button>))}
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 
