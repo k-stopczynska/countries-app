@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CountryItem from "./CountryItem";
 import CountryCard from "./CountryCard";
-import Modal from './Modal';
 import classes from "./CountriesList.module.css";
 
 const CountriesList = (props) => {
@@ -54,6 +53,7 @@ const CountriesList = (props) => {
           topLevelDomain: getNestedObject(country.tld),
         });
         setCountries(countriesToRender);
+        console.log(countriesToRender)
       }
     } catch (error) {
       setError(error.message);
@@ -130,7 +130,6 @@ const CountriesList = (props) => {
         countries
           .filter((country) => country.name === id)
           .map((country) => (
-          <Modal open={setOpen}>{
             <CountryCard
               flag={country.flag}
               key={country.key}
@@ -144,8 +143,8 @@ const CountriesList = (props) => {
               currencies={country.currencies}
               borders={country.borders}
               topLevelDomain={country.topLevelDomain}
+              open={setOpen}
             ></CountryCard>
-          }</Modal>
           ))}
     </ul>
   );

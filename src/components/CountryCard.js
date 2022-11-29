@@ -1,12 +1,24 @@
 import React from "react";
 import Button from '../UI/Button';
+import Modal from './Modal';
 import classes from "./CountryCard.module.css";
 
 const CountryCard = (props) => {
     const borders = props.borders.split(',');
-    console.log(borders)
+
+    const closeModal = () => {
+        props.open(false);
+      };
+
   return (
-    <React.Fragment>
+    <Modal>
+              <Button
+        type="button"
+        className={classes.button__close}
+        onClick={closeModal}
+      >
+        Back
+      </Button>
       <div className={classes.image__container}>
         <img src={props.flag} alt="flag"></img>
       </div>
@@ -37,9 +49,11 @@ const CountryCard = (props) => {
           Languages: <span>{props.languages}</span>
         </p>
         <h3>Border countries</h3>
+        <div className={classes.buttons__container}>
        {borders.map((border) => (<Button>{border.trim()}</Button>))}
+       </div>
       </div>
-    </React.Fragment>
+    </Modal>
   );
 };
 
