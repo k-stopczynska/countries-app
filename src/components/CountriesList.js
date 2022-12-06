@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CountryItem from "./CountryItem";
 import CountryCard from "./CountryCard";
 import classes from "./CountriesList.module.css";
+import { Puff } from  'react-loader-spinner'
 
 const CountriesList = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,7 +12,7 @@ const CountriesList = (props) => {
   const [open, setOpen] = useState(false);
 
   const getArray = (array) => {
-    return array === undefined ? 'No border countries' : array.join(", ");
+    return array === undefined ? "No border countries" : array.join(", ");
   };
 
   const getNestedObject = (object) => {
@@ -27,6 +28,19 @@ const CountriesList = (props) => {
           .map((entry) => Object.values(entry)[0])
           .join(", ");
   };
+  const mappedBorders = [];
+  const mappingBordersNames = (borders, countries) => {
+    if (borders.split("").length > 0) {
+      for (const border of borders) {
+        for (const country of countries) {
+          if (border.trim() === country.fifa) {
+            mappedBorders.push(country.name.official);
+          }
+        }
+      }
+    }
+    return getArray(mappedBorders);
+  };
 
   async function fetchCountries() {
     setIsLoading(true);
@@ -41,7 +55,7 @@ const CountriesList = (props) => {
         countriesToRender.push({
           key: country.name.official,
           flag: country.flags.png,
-          name: country.name.official,
+          name: country.name.common,
           nativeName: getDeepNestedObject(country.name.nativeName),
           population: country.population,
           region: country.region,
@@ -51,9 +65,10 @@ const CountriesList = (props) => {
           currencies: getDeepNestedObject(country.currencies),
           borders: getArray(country.borders),
           topLevelDomain: getNestedObject(country.tld),
+          fifa: country.fifa,
         });
         setCountries(countriesToRender);
-        console.log(countriesToRender)
+        console.log(countriesToRender);
       }
     } catch (error) {
       setError(error.message);
@@ -74,6 +89,13 @@ const CountriesList = (props) => {
 
   return (
     <ul className={classes.list}>
+      {isLoading && (
+        <Puff
+        ariaLabel="puff-loading"
+          wrapperClass={classes.loader}
+          visible={true}
+        />
+      )}
       {!isLoading &&
         props.filterRegion === "" &&
         props.searchedCountry === "" &&
@@ -95,7 +117,7 @@ const CountriesList = (props) => {
           .filter((country) => country.region === props.filterRegion)
           .map((country) => (
             <CountryItem
-            countryCardHandler={countryCardHandler}
+              countryCardHandler={countryCardHandler}
               flag={country.flag}
               key={country.name}
               name={country.name}
@@ -125,14 +147,14 @@ const CountriesList = (props) => {
             ></CountryItem>
           ))}
 
-      {!isLoading && 
+      {!isLoading &&
         open &&
         countries
           .filter((country) => country.name === id)
           .map((country) => (
             <CountryCard
               flag={country.flag}
-              key={country.key}
+              key={country.name}
               name={country.name}
               population={country.population}
               region={country.region}

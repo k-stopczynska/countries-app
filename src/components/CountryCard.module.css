@@ -1,13 +1,16 @@
+.button__wrapper {
+    font-size: var(--font-detail-size);
+    width: 100%;
+    padding: 2em 2em 4em;
+}
+
 .image__container {
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
     height: 50%;
     width: 100%;
+    padding: 2em;
 }
 
 .image__container img {
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
     width: 100%;
     height: 100%;
 }
@@ -37,4 +40,5 @@
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1em;
+    padding: 2em 0;
 }
