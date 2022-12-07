@@ -25,11 +25,10 @@ const CountriesList = (props) => {
 
 
 
-  // const countryCardHandler = (e) => {
-  //   const countryId = e.currentTarget.id;
-  //   setId(countryId);
-  //   setOpen(true);
-  // };
+  const countryCardHandler = (e) => {
+    const countryId = e.currentTarget.id;
+   props.onClicking(countryId);
+  };
 
   return (
     <ul className={classes.list}>
@@ -45,7 +44,7 @@ const CountriesList = (props) => {
         props.searchedCountry === "" &&
         props.countries.map((country) => (
           <CountryItem
-            //countryCardHandler={countryCardHandler}
+            countryCardHandler={countryCardHandler}
             flag={country.flag}
             key={country.name}
             name={country.name}
@@ -61,7 +60,7 @@ const CountriesList = (props) => {
           .filter((country) => country.region === props.filterRegion)
           .map((country) => (
             <CountryItem
-              //countryCardHandler={countryCardHandler}
+              countryCardHandler={countryCardHandler}
               flag={country.flag}
               key={country.name}
               name={country.name}
@@ -81,7 +80,7 @@ const CountriesList = (props) => {
           )
           .map((country) => (
             <CountryItem
-              //countryCardHandler={countryCardHandler}
+              countryCardHandler={countryCardHandler}
               flag={country.flag}
               key={country.name}
               name={country.name}

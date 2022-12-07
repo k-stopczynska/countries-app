@@ -13,6 +13,7 @@ const Home = (props) => {
         searchedCountry={props.country}
         isLoading={props.isLoading}
         countries={props.countries}
+        onClicking={props.onClicking}
       ></CountriesList>
     </Fragment>
   );

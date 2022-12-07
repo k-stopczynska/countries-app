@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import useFetch from './hooks/use-fetch';
+import useFetch from "./hooks/use-fetch";
 import Header from "./components/Header";
 import Home from "./pages/Home";
-import CountryCard from './pages/CountryCard';
+import CountryCard from "./pages/CountryCard";
 import ThemeContext from "./contexts/theme-context";
 import "./App.css";
 
@@ -11,9 +11,8 @@ function App() {
   const themeCtx = useContext(ThemeContext);
   const [region, setRegion] = useState("");
   const [country, setCountry] = useState("");
-  const [name, setName] = useState('');
- const {isLoading, error, countries} = useFetch();
-
+  const [name, setName] = useState("");
+  const { isLoading, error, countries } = useFetch();
 
   const onChangingFilter = (filteredRegion) => {
     setRegion(filteredRegion);
@@ -26,25 +25,34 @@ function App() {
   };
 
   const onClicking = (id) => {
-setName(id);
-  }
+    console.log(id);
+    setName(id);
+  };
 
   return (
     <div id="App" className={themeCtx.lightMode ? "lightMode" : ""}>
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={ <Home
-          countries={ countries}
-          isLoading={isLoading}
-            region={region}
-            country={country}
-            onChangingFilter={onChangingFilter}
-            onSearchin={onSearching}
-            onClicking={onClicking}
-          />} />
-          <Route path={`/${name}`} element={
-            <CountryCard
+          <Route
+            path="/"
+            element={
+              <Home
+                countries={countries}
+                isLoading={isLoading}
+                region={region}
+                country={country}
+                onChangingFilter={onChangingFilter}
+                onSearchin={onSearching}
+                onClicking={onClicking}
+              />
+            }
+          />
+          <Route
+            path={`/${name}`}
+            element={
+              countries.filter((country) => country.name === name).map((country) =>
+              <CountryCard
               flag={country.flag}
               key={country.name}
               name={country.name}
@@ -57,7 +65,9 @@ setName(id);
               currencies={country.currencies}
               borders={country.borders}
               topLevelDomain={country.topLevelDomain}
-            ></CountryCard>} />
+            ></CountryCard>)
+            }
+          />
         </Routes>
       </main>
     </div>

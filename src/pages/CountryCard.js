@@ -2,7 +2,6 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Button from "../UI/Button";
-import Modal from "../components/Modal";
 import classes from "./CountryCard.module.css";
 
 const CountryCard = (props) => {
@@ -17,7 +16,7 @@ const CountryCard = (props) => {
   }
 
   return (
-    <Modal>
+    <React.Fragment>
       <div className={classes.button__wrapper}>
         <Button
           type="button"
@@ -61,10 +60,11 @@ const CountryCard = (props) => {
         <div className={classes.buttons__container}>
           {borders.map((border) => (
             <Button onClick={showAnotherCardHandler}>{border.trim()}</Button>
-          ))}
+          ))
+          }
         </div>
       </div>
-    </Modal>
+    </React.Fragment>
   );
 };
 
