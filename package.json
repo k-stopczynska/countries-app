@@ -11,7 +11,11 @@
     "react-loader-spinner": "^5.3.4",
     "react-router-dom": "^6.4.4",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-regular-svg-icons": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/react-fontawesome": "^0.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
