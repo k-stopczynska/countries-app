@@ -32,7 +32,7 @@ const CountryCard = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <div className={classes.transition__wrapper}>
       <div className={classes.button__wrapper}>
         <Link>
           <Button
@@ -101,7 +101,7 @@ const CountryCard = (props) => {
           </div>
         </section>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 

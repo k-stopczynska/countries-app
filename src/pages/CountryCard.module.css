@@ -1,3 +1,31 @@
+a {
+    color: var(--color-text);
+    font-size: var(--font-detail-size);
+    text-decoration: none;
+  }
+
+  @keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: .3;
+    }
+    50% {
+        opacity: .5;
+    }
+    75% {
+        opacity: .8;
+    }
+    100% {
+        opacity: 1;
+    }
+  }
+
+  .transition__wrapper {
+    animation: fadeIn 2s linear;
+  }
+
 .card__container {
   font-size: var(--font-detail-size);
 }
@@ -5,10 +33,6 @@
 .button__wrapper {
   width: 100%;
   padding: 2em 2em 4em;
-}
-
-.button__close {
-  font-size: var(--font-detail-size);
 }
 
 .image__container {
@@ -51,7 +75,7 @@
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: .6em;
+  gap: 0.6em;
   padding: 2em 0;
 }
 
@@ -71,9 +95,10 @@
   }
   .description__wrapper:nth-child(3) {
     display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
-      width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: .5em;
+    width: 100%;
   }
   .buttons__container {
     padding: 0;
