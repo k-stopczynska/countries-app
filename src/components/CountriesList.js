@@ -5,26 +5,6 @@ import { Puff } from  'react-loader-spinner'
 
 const CountriesList = (props) => {
 
-  // const [open, setOpen] = useState(false);
-  // const [id, setId] = useState("");
-
-
-  // const mappedBorders = [];
-  // const mappingBordersNames = (borders, countries) => {
-  //   if (borders.split("").length > 0) {
-  //     for (const border of borders) {
-  //       for (const country of countries) {
-  //         if (border.trim() === country.fifa) {
-  //           mappedBorders.push(country.name.official);
-  //         }
-  //       }
-  //     }
-  //   }
-  //   return getArray(mappedBorders);
-  // };
-
-
-
   const countryCardHandler = (e) => {
     const countryId = e.currentTarget.id;
    props.onClicking(countryId);

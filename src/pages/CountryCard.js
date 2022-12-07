@@ -1,19 +1,34 @@
 import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Button from "../UI/Button";
 import classes from "./CountryCard.module.css";
 
 const CountryCard = (props) => {
-  const borders = props.borders.split(",")
+  const borders = props.borders.split(",");
+  const mappedBorders = [];
+  const mappingBordersNames = (borders, countries) => {
+    if (borders.length > 0) {
+      for (const border of borders) {
+        for (const country of countries) {
+          if (border.trim() === country.fifa) {
+            mappedBorders.push(country.name);
+          }
+        }
+      }
+    }
+    return mappedBorders;
+  };
+  mappingBordersNames(borders, props.countries);
 
-  const closeModal = () => {
-    props.open(false);
+  const closeCard = () => {
+    window.history.back();
   };
 
-  const showAnotherCardHandler = () => {
-    console.log('trying my best');
-  }
+  const showAnotherCardHandler = (e) => {
+    props.onClicking(e.target.innerText);
+  };
 
   return (
     <React.Fragment>
@@ -21,8 +36,9 @@ const CountryCard = (props) => {
         <Button
           type="button"
           className={classes.button__close}
-          onClick={closeModal}
-        ><FontAwesomeIcon icon="fa-solid fa-arrow-left" />
+          onClick={closeCard}
+        >
+          <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
           Back
         </Button>
       </div>
@@ -32,8 +48,8 @@ const CountryCard = (props) => {
       <div className={classes.country__description__container}>
         <h2 className={classes.country__heading}>{props.name}</h2>
         <p className={classes.country__desc}>
-          Native Name: 
-          <span>{ props.nativeName}</span>
+          Native Name:
+          <span>{props.nativeName}</span>
         </p>
         <p className={classes.country__desc}>
           Population: <span>{props.population.toLocaleString()}</span>
@@ -58,10 +74,10 @@ const CountryCard = (props) => {
         </p>
         <h3>Border countries: </h3>
         <div className={classes.buttons__container}>
-          {borders.map((border) => (
-            <Button onClick={showAnotherCardHandler}>{border.trim()}</Button>
-          ))
-          }
+          {mappedBorders.length === 0 && <p>Looks like it's an island</p>}
+          {mappedBorders.map((border) => ( border &&
+          <Link to={`/${border}`}> <Button onClick={showAnotherCardHandler}>{border}</Button></Link>
+          ))}
         </div>
       </div>
     </React.Fragment>

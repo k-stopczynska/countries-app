@@ -13,6 +13,7 @@ function App() {
   const [country, setCountry] = useState("");
   const [name, setName] = useState("");
   const { isLoading, error, countries } = useFetch();
+  console.log(name);
 
   const onChangingFilter = (filteredRegion) => {
     setRegion(filteredRegion);
@@ -25,7 +26,6 @@ function App() {
   };
 
   const onClicking = (id) => {
-    console.log(id);
     setName(id);
   };
 
@@ -43,7 +43,7 @@ function App() {
                 region={region}
                 country={country}
                 onChangingFilter={onChangingFilter}
-                onSearchin={onSearching}
+                onSearching={onSearching}
                 onClicking={onClicking}
               />
             }
@@ -53,6 +53,8 @@ function App() {
             element={
               countries.filter((country) => country.name === name).map((country) =>
               <CountryCard
+              onClicking={onClicking}
+              countries={countries}
               flag={country.flag}
               key={country.name}
               name={country.name}
