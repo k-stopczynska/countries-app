@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const useFetch = () => {
 
@@ -24,7 +24,7 @@ const useFetch = () => {
               .join(", ");
       };
 
-    async function fetchCountries() {
+     const fetchCountries = useCallback(async() => {
         setIsLoading(true);
         try {
           const response = await fetch("https://restcountries.com/v3.1/all");
@@ -56,11 +56,11 @@ const useFetch = () => {
           return error;
         }
         setIsLoading(false);
-      }
+      }, [])
 
       useEffect(() => {
         fetchCountries();
-      }, []);
+      }, [fetchCountries]);
 
       return (
         {countries, error, isLoading}
