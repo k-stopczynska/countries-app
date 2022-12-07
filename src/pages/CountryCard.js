@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Button from "../UI/Button";
-import Modal from "./Modal";
+import Modal from "../components/Modal";
 import classes from "./CountryCard.module.css";
 
 const CountryCard = (props) => {
