@@ -1,0 +1,9 @@
+@media (min-width:720px) {
+    .inputs__container {
+display: flex;
+align-items: center;
+justify-content: space-between;
+width: 100vw;
+padding: 2em;
+    }
+}

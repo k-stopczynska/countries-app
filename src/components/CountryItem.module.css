@@ -4,10 +4,14 @@
     border-radius: var(--border-radius);
 }
 
+.list__item a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
 .image__container {
     border-top-left-radius: var(--border-radius);
     border-top-right-radius: var(--border-radius);
-    background: white;
     height: 50%;
     width: 100%;
 }

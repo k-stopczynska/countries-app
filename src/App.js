@@ -13,7 +13,6 @@ function App() {
   const [country, setCountry] = useState("");
   const [name, setName] = useState("");
   const { isLoading, error, countries } = useFetch();
-  console.log(name);
 
   const onChangingFilter = (filteredRegion) => {
     setRegion(filteredRegion);

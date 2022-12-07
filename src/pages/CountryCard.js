@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Button from "../UI/Button";
@@ -23,6 +23,7 @@ const CountryCard = (props) => {
   mappingBordersNames(borders, props.countries);
 
   const closeCard = () => {
+    console.log(window.history);
     window.history.back();
   };
 
@@ -33,52 +34,72 @@ const CountryCard = (props) => {
   return (
     <React.Fragment>
       <div className={classes.button__wrapper}>
-        <Button
-          type="button"
-          className={classes.button__close}
-          onClick={closeCard}
-        >
-          <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
-          Back
-        </Button>
+        <Link>
+          <Button
+            type="button"
+            className={classes.button__close}
+            onClick={closeCard}
+          >
+            <FontAwesomeIcon icon={faArrowLeft} />
+            Back
+          </Button>
+        </Link>
       </div>
-      <div className={classes.image__container}>
-        <img src={props.flag} alt="flag"></img>
-      </div>
-      <div className={classes.country__description__container}>
-        <h2 className={classes.country__heading}>{props.name}</h2>
-        <p className={classes.country__desc}>
-          Native Name:
-          <span>{props.nativeName}</span>
-        </p>
-        <p className={classes.country__desc}>
-          Population: <span>{props.population.toLocaleString()}</span>
-        </p>
-        <p className={classes.country__desc}>
-          Region: <span>{props.region}</span>
-        </p>
-        <p className={classes.country__desc}>
-          Subregion: <span>{props.subregion}</span>
-        </p>
-        <p className={classes.country__desc}>
-          Capital: <span>{props.capital}</span>
-        </p>
-        <p className={classes.country__desc}>
-          Top Level Domain: <span>{props.topLevelDomain}</span>
-        </p>
-        <p className={classes.country__desc}>
-          Currencies: <span>{props.currencies}</span>
-        </p>
-        <p className={classes.country__desc}>
-          Languages: <span>{props.languages}</span>
-        </p>
-        <h3>Border countries: </h3>
-        <div className={classes.buttons__container}>
-          {mappedBorders.length === 0 && <p>Looks like it's an island</p>}
-          {mappedBorders.map((border) => ( border &&
-          <Link to={`/${border}`}> <Button onClick={showAnotherCardHandler}>{border}</Button></Link>
-          ))}
+      <div className={classes.card__container}>
+        <div className={classes.country__flag__wrapper}>
+          <div className={classes.image__container}>
+            <img src={props.flag} alt="flag"></img>
+          </div>
         </div>
+        <section className={classes.country__description__container}>
+          <h2 className={classes.country__heading}>{props.name}</h2>
+          <div className={classes.description__facts}>
+            <div className={classes.description__wrapper}>
+              <p className={classes.country__desc}>
+                Native Name: <span>{props.nativeName}</span>
+              </p>
+              <p className={classes.country__desc}>
+                Population:{" "}
+                <span>{props.population.toLocaleString("en-US")}</span>
+              </p>
+              <p className={classes.country__desc}>
+                Region: <span>{props.region}</span>
+              </p>
+              <p className={classes.country__desc}>
+                Subregion: <span>{props.subregion}</span>
+              </p>
+              <p className={classes.country__desc}>
+                Capital: <span>{props.capital}</span>
+              </p>
+            </div>
+            <div className={classes.description__wrapper}>
+              <p className={classes.country__desc}>
+                Top Level Domain: <span>{props.topLevelDomain}</span>
+              </p>
+              <p className={classes.country__desc}>
+                Currencies: <span>{props.currencies}</span>
+              </p>
+              <p className={classes.country__desc}>
+                Languages: <span>{props.languages}</span>
+              </p>
+            </div>
+          </div>
+          <div className={classes.description__wrapper}>
+            <h3>Border countries: </h3>
+            <div className={classes.buttons__container}>
+              {mappedBorders.length === 0 && <p>Looks like it's an island</p>}
+              {mappedBorders.map(
+                (border) =>
+                  border && (
+                    <Link to={`/${border}`}>
+                      {" "}
+                      <Button onClick={showAnotherCardHandler}>{border}</Button>
+                    </Link>
+                  )
+              )}
+            </div>
+          </div>
+        </section>
       </div>
     </React.Fragment>
   );

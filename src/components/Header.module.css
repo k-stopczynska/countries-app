@@ -9,6 +9,12 @@
   width: 100%;
 }
 
+@media (min-width: 720px) {
+  .header {
+    padding: 2em 3em;
+  }
+}
+
 .main__heading {
   font-size: var(--font-home-size);
   font-weight: 800;
@@ -21,4 +27,9 @@ button {
   font-weight: 300;
   display: flex;
   gap: .5em;
+}
+
+button:hover {
+  cursor: pointer;
+  scale: 1.1;
 }
