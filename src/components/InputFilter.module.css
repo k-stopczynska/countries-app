@@ -2,6 +2,8 @@
   height: 40px;
   width: 14rem;
   position: relative;
+  left: 2em;
+  margin-bottom: 2em;
 }
 
 .form__control {
@@ -14,18 +16,6 @@
   cursor: pointer;
 }
 
-@media (min-width: 720px) {
-  .form__control {
-    padding-right: 3.5em;
-    width: 14rem;
-  }
-
-  .option__control {
-    width: 14rem;
-    margin-right: 2em;
-  }
-}
-
 .select__control {
   transform: scaleY(0);
   opacity: 0;
@@ -35,13 +25,24 @@
   background: var(--color-accent);
   border-radius: var(--border-radius);
   transition-property: transform, opacity;
-  transition-duration: 0.2s;
+  transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
 }
 
 .select__control__open {
   transform: scaleY(1);
   opacity: 1;
+}
+@media (min-width: 720px) {
+  .select__control__open {
+    margin-right: 1em;
+    margin-left: -1em;
+  }
+
+  .filter__container {
+    left: 0;
+    margin-bottom: 0;
+  }
 }
 
 .option__control {
@@ -52,6 +53,7 @@
 
 .option__control:hover {
   font-size: larger;
+  font-weight: 600;
 }
 
 .option__control:nth-child(1) {
@@ -81,27 +83,30 @@
 .arrow__open::before,
 .arrow__open::after {
   content: "";
+  background: var(--color-text);
   position: absolute;
   bottom: 15px;
   width: 0.15rem;
   height: 20%;
   transition: all 0.5s;
 }
+
 .arrow::before {
   left: 20px;
   transform: rotate(45deg);
-  background: var(--color-text);
 }
+
 .arrow::after {
   left: 25px;
   transform: rotate(-45deg);
-  background: var(--color-text);
 }
+
 .arrow__open::before {
-  left: -5px;
+  left: 15px;
   transform: rotate(-45deg);
 }
+
 .arrow__open::after {
-  left: 5px;
+  left: 20px;
   transform: rotate(45deg);
 }
