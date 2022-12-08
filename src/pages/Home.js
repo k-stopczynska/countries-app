@@ -9,7 +9,7 @@ const Home = (props) => {
     <Fragment>
       <div className={classes.inputs__container}>
         <InputSearch onSearching={props.onSearching} />
-        <InputFilter onChangingFilter={props.onChangingFilter}></InputFilter>
+        <InputFilter onChangingFilter={props.onChangingFilter} region={props.region}></InputFilter>
       </div>
       <CountriesList
         filterRegion={props.region}

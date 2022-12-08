@@ -22,10 +22,10 @@ const CountryCard = (props) => {
   };
   mappingBordersNames(borders, props.countries);
 
-  const closeCard = () => {
-    console.log(window.history);
-    window.history.back();
-  };
+  // const closeCard = () => {
+  //   console.log(window.history);
+  //   window.history.back();
+  // };
 
   const showAnotherCardHandler = (e) => {
     props.onClicking(e.target.innerText);
@@ -34,11 +34,11 @@ const CountryCard = (props) => {
   return (
     <div className={classes.transition__wrapper}>
       <div className={classes.button__wrapper}>
-        <Link>
+        <Link to={'/'}>
           <Button
             type="button"
             className={classes.button__close}
-            onClick={closeCard}
+            // onClick={closeCard}
           >
             <FontAwesomeIcon icon={faArrowLeft} />
             Back

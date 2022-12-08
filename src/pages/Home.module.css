@@ -3,7 +3,9 @@
 display: flex;
 align-items: center;
 justify-content: space-between;
+max-height: 140px;
 width: 100vw;
 padding: 2em;
+position: relative;
     }
 }

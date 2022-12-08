@@ -1,43 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./InputFilter.module.css";
 
 const InputFilter = (props) => {
-
+  const [selected, setSelected] = useState(false);
   const filterHandler = (e) => {
-    props.onChangingFilter(e.target.value);
+    if (e.target.innerText === 'America') {
+      props.onChangingFilter('Americas')
+    } else {
+    props.onChangingFilter(e.target.innerText);
+    }
+  };
+
+  const clickHandler = () => {
+    setSelected(!selected);
   };
 
   return (
-    <form
-      type="submit"
-      onChange={filterHandler}
-      className={classes.form__control}
-    >
-      <select
-        className={classes.select__control}
-        type="select"
-        name="filter"
-        id="filter"
-      >
-        <option className={classes.option__control} value="">Filter By Region</option>
-        <option className={classes.option__control} value="Africa">
-          Africa
-        </option>
-        <option className={classes.option__control} value="Americas">
-          America
-        </option>
-        <option className={classes.option__control} value="Asia">
-          Asia
-        </option>
-        <option className={classes.option__control} value="Europe">
-          Europe
-        </option>
-        <option className={classes.option__control} value="Oceania">
-          Oceania
-        </option>
-      </select>
-      <div className={classes.arrow}></div>
-    </form>
+    <div className={classes.filter__container}>
+      <button onClick={clickHandler} className={classes.form__control}>{props.region ? props.region : 'Filter By Region'}
+      <div className={selected ? classes.arrow__open : classes.arrow}></div>
+      </button>
+        <div className={selected ? classes.select__control__open : classes.select__control} onClick={clickHandler}>
+          <div
+            className={classes.option__control}
+            onClick={filterHandler}
+          >
+            Africa
+          </div>
+          <div
+            className={classes.option__control}
+            onClick={filterHandler}
+          >
+            America
+          </div>
+          <div
+            className={classes.option__control}
+            onClick={filterHandler}
+          >
+            Asia
+          </div>
+          <div
+            className={classes.option__control}
+            onClick={filterHandler}
+          >
+            Europe
+          </div>
+          <div
+            className={classes.option__control}
+            onClick={filterHandler}
+          >
+            Oceania
+          </div>
+        </div>
+
+    </div>
   );
 };
 

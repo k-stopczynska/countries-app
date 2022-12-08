@@ -1,65 +1,107 @@
+.filter__container {
+  height: 40px;
+  width: 14rem;
+  position: relative;
+}
+
 .form__control {
-        padding: 1em;
-        height: 70px;
-        width: 100%;
-        position: relative;
-        cursor: pointer;
+  border-radius: var(--border-radius);
+  padding: 1em;
+  height: 40px;
+  width: 100%;
+  position: relative;
+  right: 1em;
+  cursor: pointer;
 }
 
 @media (min-width: 720px) {
-    .form__control {
-        width: fit-content;
-        padding-right: 3.5em
-    }
+  .form__control {
+    padding-right: 3.5em;
+    width: 14rem;
+  }
+
+  .option__control {
+    width: 14rem;
+    margin-right: 2em;
+  }
 }
 
 .select__control {
-    appearance: none;
-    background: var(--color-accent);
-    border: none;
-    border-radius: var(--border-radius);
-    color: var(--color-text);
-    padding: 1em;
-    outline: transparent;
+  transform: scaleY(0);
+  opacity: 0;
+  transform-origin: top;
+  position: absolute;
+  width: max-content;
+  background: var(--color-accent);
+  border-radius: var(--border-radius);
+  transition-property: transform, opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
 }
 
-.arrow {
-    background: var(--color-accent);
-    border-radius: var(--border-radius);
-    position: relative;
-    left: 120px;
-    top: -40px;
-    height: 40px;
-    width: 40px;
-}
-.arrow::before, .arrow::after {
-    content: "";
-    position: absolute;
-    bottom: 15px;
-    width: 0.15rem;
-    height: 20%;
-    transition: all 0.5s;
-}
-.arrow::before {
-    left: 20px;
-    transform: rotate(45deg);
-    background: var(--color-text);
-}
-.arrow::after {
-    left:25px;
-    transform: rotate(-45deg);
-    background: var(--color-text);
-}
-.open .arrow::before {
-    left: -5px;
-    transform: rotate(-45deg);
-}
-.open .arrow::after {
-    left: 5px;
-    transform: rotate(45deg);
+.select__control__open {
+  transform: scaleY(1);
+  opacity: 1;
 }
 
 .option__control {
-    border-radius: var(--border-radius);
-    outline: none;
+  background: var(--color-accent);
+  cursor: pointer;
+  padding: 0.5em 1em;
+}
+
+.option__control:hover {
+  font-size: larger;
+}
+
+.option__control:nth-child(1) {
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  margin-top: 4px;
+}
+
+.option__control:nth-child(5) {
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.arrow,
+.arrow__open {
+  background: var(--color-accent);
+  border-radius: var(--border-radius);
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 40px;
+  width: 40px;
+}
+
+.arrow::before,
+.arrow::after,
+.arrow__open::before,
+.arrow__open::after {
+  content: "";
+  position: absolute;
+  bottom: 15px;
+  width: 0.15rem;
+  height: 20%;
+  transition: all 0.5s;
+}
+.arrow::before {
+  left: 20px;
+  transform: rotate(45deg);
+  background: var(--color-text);
+}
+.arrow::after {
+  left: 25px;
+  transform: rotate(-45deg);
+  background: var(--color-text);
+}
+.arrow__open::before {
+  left: -5px;
+  transform: rotate(-45deg);
+}
+.arrow__open::after {
+  left: 5px;
+  transform: rotate(45deg);
 }
