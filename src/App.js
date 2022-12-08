@@ -31,7 +31,7 @@ function App() {
   return (
     <div id="App" className={themeCtx.lightMode ? "lightMode" : ""}>
       {error && <h1>{error.message}</h1>}
-      <Header />
+      <Header onSearching={onSearching} onChangingFilter={onChangingFilter}/>
       <main>
         <Routes>
           <Route

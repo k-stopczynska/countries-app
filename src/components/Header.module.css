@@ -9,15 +9,25 @@
   width: 100%;
 }
 
+.main__heading {
+  font-size: var(--font-home-size);
+  font-weight: 800;
+}
+
 @media (min-width: 720px) {
   .header {
     padding: 2em 3em;
   }
+
+  .main__heading {
+   font-size: var(--font-detail-size);
+  }
 }
 
-.main__heading {
-  font-size: var(--font-home-size);
-  font-weight: 800;
+@media (min-width: 1250px) {
+  .header {
+    padding: 2em 5em;
+  }
 }
 
 button {

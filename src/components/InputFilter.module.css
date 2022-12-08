@@ -6,6 +6,12 @@
   margin-bottom: 2em;
 }
 
+@media (min-width: 1250px) {
+  .filter__container {
+    margin-right: 2em;
+  }
+}
+
 .form__control {
   border-radius: var(--border-radius);
   padding: 1em;

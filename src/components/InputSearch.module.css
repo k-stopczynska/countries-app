@@ -14,9 +14,10 @@
     }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1250px) {
     .form__control {
         width: 40%;
+        margin-left: 2em;
     }
 }
 

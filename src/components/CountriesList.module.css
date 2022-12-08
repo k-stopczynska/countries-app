@@ -11,15 +11,16 @@
 }
 
 .loader {
-  height: 80px;
-  width: 80px;
+  height: 100%;
+  width: 100%;
   color: #4fa94d;
+  position: absolute;
+  transform: translate(50%, 25%);
 }
 
 @media (min-width: 720px) {
   .list {
     grid-template-columns: repeat(2, 1fr);
-    gap: 3em;
   }
 }
 
@@ -30,14 +31,16 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1250px) {
   .list {
     grid-template-columns: repeat(4, 1fr);
     gap: 5em;
+    padding-left: 5em;
+    padding-right: 5em;
   }
 }
 
-@media (min-width: 1460px) {
+@media (min-width: 1560px) {
   .list {
     grid-template-columns: repeat(5, 1fr);
   }
