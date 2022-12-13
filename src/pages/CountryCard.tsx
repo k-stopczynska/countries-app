@@ -3,12 +3,28 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Button from "../UI/Button";
+import Country from "../types";
 import classes from "./CountryCard.module.css";
 
-const CountryCard = (props) => {
-  const borders = props.borders.split(",");
-  const mappedBorders = [];
-  const mappingBordersNames = (borders, countries) => {
+const CountryCard: React.FC<{
+  countries: Country[];
+  onClicking: (e: any) => void;
+  key: string;
+  flag: string;
+  name: string;
+  nativeName: string;
+  population: number;
+  region: string;
+  subregion: string;
+  capital: string;
+  languages: string;
+  currencies: string;
+  borders: string;
+  topLevelDomain: string;
+}> = (props) => {
+  const borders: string[] = props.borders.split(",");
+  const mappedBorders: string[] = [];
+  const mappingBordersNames = (borders: string[], countries: Country[]) => {
     if (borders.length > 0) {
       for (const border of borders) {
         for (const country of countries) {
@@ -22,24 +38,15 @@ const CountryCard = (props) => {
   };
   mappingBordersNames(borders, props.countries);
 
-  // const closeCard = () => {
-  //   console.log(window.history);
-  //   window.history.back();
-  // };
-
-  const showAnotherCardHandler = (e) => {
+  const showAnotherCardHandler = (e: any) => {
     props.onClicking(e.target.innerText);
   };
 
   return (
     <div className={classes.transition__wrapper}>
       <div className={classes.button__wrapper}>
-        <Link to={'/'}>
-          <Button
-            type="button"
-            className={classes.button__close}
-            // onClick={closeCard}
-          >
+        <Link to={"/"}>
+          <Button type="button" className={classes.button__close}>
             <FontAwesomeIcon icon={faArrowLeft} />
             Back
           </Button>

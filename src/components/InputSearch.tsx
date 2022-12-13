@@ -3,25 +3,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import classes from "./InputSearch.module.css";
 
-const InputSearch = (props) => {
+const InputSearch: React.FC<{ onSearching: (arg0: string) => void }> = (
+  props
+) => {
   const [userInput, setUserInput] = useState("");
 
-  const getUserInput = (e) => {
-    setUserInput(e.target.value);
+  const getUserInput = (e: React.FormEvent<HTMLInputElement>) => {
+    setUserInput((e.target as HTMLInputElement).value);
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     props.onSearching(userInput);
-    setUserInput('');
+    setUserInput("");
   };
 
   return (
-    <form
-      type="submit"
-      onSubmit={onSubmitHandler}
-      className={classes.form__control}
-    >
+    <form onSubmit={onSubmitHandler} className={classes.form__control}>
       <label className={classes.label__control} htmlFor="search">
         <FontAwesomeIcon icon={faMagnifyingGlass} />
       </label>

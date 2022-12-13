@@ -14,24 +14,26 @@ function App() {
   const [name, setName] = useState("");
   const { isLoading, error, countries } = useFetch();
 
-  const onChangingFilter = (filteredRegion) => {
+  const onChangingFilter = (filteredRegion: string) => {
     setRegion(filteredRegion);
     setCountry("");
   };
 
-  const onSearching = (searchedCountry) => {
+  const onSearching = (searchedCountry: string) => {
     setCountry(searchedCountry);
     setRegion("");
   };
 
-  const onClicking = (id) => {
+  const onClicking = (id: any) => {
     setName(id);
   };
 
   return (
     <div id="App" className={themeCtx.lightMode ? "lightMode" : ""}>
-      {error && <h1>{error.message}</h1>}
+      <>
+      {error && <h1>{(error as Error).message}</h1>}
       <Header onSearching={onSearching} onChangingFilter={onChangingFilter}/>
+      </>
       <main>
         <Routes>
           <Route

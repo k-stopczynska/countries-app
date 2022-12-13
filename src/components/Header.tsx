@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
 import ThemeContext from "../contexts/theme-context";
 import classes from "./Header.module.css";
 
-const Header = (props) => {
+const Header: React.FC<{
+  onSearching: (arg0: string) => void,
+  onChangingFilter: (arg0: string) => void
+}> = (props) => {
   const themeCtx = useContext(ThemeContext);
   const onChangingRoute = () => {
     props.onChangingFilter("");
