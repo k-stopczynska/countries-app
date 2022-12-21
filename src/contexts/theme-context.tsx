@@ -10,7 +10,7 @@ export const ThemeContextProvider  = (props: any) => {
   const [lightMode, setLightMode] = useState(false);
 
   useEffect(() => {
-    const mode: any = JSON.parse(localStorage.getItem("lightMode") || "");
+    const mode: boolean = JSON.parse(localStorage.getItem("lightMode") || 'false');
     setLightMode(mode);
   }, []);
 
