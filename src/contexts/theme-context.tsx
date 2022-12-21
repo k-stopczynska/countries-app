@@ -7,10 +7,10 @@ const ThemeContext = React.createContext({
 });
 
 export const ThemeContextProvider  = (props: any) => {
-  const [lightMode, setLightMode] = useState<any>(false);
+  const [lightMode, setLightMode] = useState(false);
 
   useEffect(() => {
-    const mode: boolean = JSON.parse(localStorage.getItem("lightMode") || "");
+    const mode: any = JSON.parse(localStorage.getItem("lightMode") || "");
     setLightMode(mode);
   }, []);
 
