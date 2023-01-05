@@ -6,7 +6,7 @@
   font-size: var(--font-home-size);
   padding: 2em 1em;
   height: 70px;
-  width: 100%;
+  width: 100vw;
 }
 
 .main__heading {

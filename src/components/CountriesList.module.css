@@ -3,6 +3,7 @@
   grid-template-columns: 1fr;
   align-self: center;
   justify-self: center;
+  justify-items: center;
   gap: 2em;
   list-style: none;
   padding-left: 3em;

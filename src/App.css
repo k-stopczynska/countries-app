@@ -3,7 +3,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 :root {
@@ -31,5 +31,4 @@
   font-size: var(--font-home-size);
   min-height: 100vh;
   width: 100vw;
-  overflow-y: none;
 }

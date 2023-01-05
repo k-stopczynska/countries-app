@@ -25,7 +25,7 @@ const InputFilter = (props: InputFilterProps) => {
       </button>
       <div
         className={
-          selected ? classes.select__control__open : classes.select__control
+          selected ? classes['select__control--open'] : classes.select__control
         }
         onClick={clickHandler}
       >

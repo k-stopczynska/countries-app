@@ -1,3 +1,4 @@
+import { url } from "inspector";
 import { Link } from "react-router-dom";
 import { CountryItemProps } from "../types";
 import classes from "./CountryItem.module.css";
@@ -11,10 +12,10 @@ const CountryItem = (props: CountryItemProps) => {
       key={props.name}
     >
       <Link to={`/${props.name}`}>
-        <div className={classes.image__container}>
-          <img src={props.flag} alt="flag"></img>
+        <div className={classes.image__container} style={{backgroundImage: `url(${props.flag})`}}>
+        
         </div>
-        <div className={classes.country__description__container}>
+        <div className={classes['country__description--container']}>
           <h2 className={classes.country__heading}>{props.name}</h2>
           <p className={classes.country__desc}>
             Population: <span>{props.population.toLocaleString("en-US")}</span>

@@ -1,11 +1,14 @@
-@media (min-width:720px) {
-    .inputs__container {
-display: flex;
-align-items: center;
-justify-content: space-between;
-max-height: 140px;
-width: 100vw;
-padding: 2em;
-position: relative;
-    }
+.inputs__container {
+  width: 100vw;
+}
+
+@media (min-width: 720px) {
+  .inputs__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-height: 140px;
+    padding: 2em;
+    position: relative;
+  }
 }
