@@ -1,26 +1,19 @@
+import { Puff } from "react-loader-spinner";
 import CountryItem from "./CountryItem";
+import { Country, CountriesListProps } from "../types";
 import classes from "./CountriesList.module.css";
-import { Puff } from  'react-loader-spinner';
-import Country from '../types';
 
-const CountriesList: React.FC<{
-  filterRegion: string,
-  searchedCountry: string,
-  isLoading: boolean,
-  countries: Country[],
-  onClick: (arg0: string) => void
-}> = (props) => {
-
+const CountriesList = (props: CountriesListProps) => {
   const countryCardHandler = (e: any) => {
     const countryId = e.currentTarget.id;
-   props.onClick(countryId);
+    props.onClick(countryId);
   };
 
   return (
     <ul className={classes.list}>
       {props.isLoading && (
         <Puff
-        ariaLabel="puff-loading"
+          ariaLabel="puff-loading"
           wrapperClass={classes.loader}
           visible={true}
         />

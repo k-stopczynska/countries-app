@@ -1,12 +1,7 @@
-import React from "react";
+import { ButtonType } from "../types";
 import classes from "./Button.module.css";
 
-const Button: React.FC<{
-  children?: React.ReactNode,
-  onClick?: (e: any) => void,
-  type?: "button" | "submit",
-  className?: string,
-}> = (props) => {
+const Button = (props: ButtonType) => {
   return (
     <button
       className={classes.button}

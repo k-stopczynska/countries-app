@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import Country from "../types";
+import { Country } from "../types";
 
 const useFetch = () => {
   const [isLoading, setIsLoading] = useState(false);

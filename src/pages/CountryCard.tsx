@@ -1,28 +1,11 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Button from "../UI/Button";
-import Country from "../types";
+import { Country, CountryCardProps } from "../types";
 import classes from "./CountryCard.module.css";
 
-const CountryCard: React.FC<{
-  //union type
-  countries: Country[];
-  onClick: (e: any) => void;
-  key: string;
-  flag: string;
-  name: string;
-  nativeName: string;
-  population: number;
-  region: string;
-  subregion: string;
-  capital: string;
-  languages: string;
-  currencies: string;
-  borders: string;
-  topLevelDomain: string;
-}> = (props) => {
+const CountryCard = (props: CountryCardProps) => {
   const borders: string[] = props.borders.split(",");
   const mappedBorders: string[] = [];
   const mappingBordersNames = (borders: string[], countries: Country[]) => {
@@ -54,12 +37,12 @@ const CountryCard: React.FC<{
         </Link>
       </div>
       <div className={classes.card__container}>
-        <div className={classes['country__flag-wrapper']}>
+        <div className={classes["country__flag-wrapper"]}>
           <div className={classes.image__container}>
             <img src={props.flag} alt="flag"></img>
           </div>
         </div>
-        <section className={classes['country__description-container']}>
+        <section className={classes["country__description-container"]}>
           <h2 className={classes.country__heading}>{props.name}</h2>
           <div className={classes.description__facts}>
             <div className={classes.description__wrapper}>

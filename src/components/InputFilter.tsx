@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { InputFilterProps } from "../types";
 import classes from "./InputFilter.module.css";
 
-const InputFilter: React.FC<{
-  onChangeFilter: (arg0: string) => void;
-  region: string;
-}> = (props) => {
+const InputFilter = (props: InputFilterProps) => {
   const [selected, setSelected] = useState(false);
-  
+
   const filterHandler = (e: any) => {
     if (e.target.innerText === "America") {
       props.onChangeFilter("Americas");

@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { InputSearchProps } from "../types";
 import classes from "./InputSearch.module.css";
 
-const InputSearch: React.FC<{ onSearch: (arg0: string) => void }> = (
-  props
-) => {
+const InputSearch = (props: InputSearchProps) => {
   const [userInput, setUserInput] = useState("");
-//debouncer
   const getUserInput = (e: React.FormEvent<HTMLInputElement>) => {
     setUserInput((e.target as HTMLInputElement).value);
   };

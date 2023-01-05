@@ -1,15 +1,13 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun } from "@fortawesome/free-regular-svg-icons";
 import { faMoon } from "@fortawesome/free-regular-svg-icons";
-import { Link } from "react-router-dom";
 import ThemeContext from "../contexts/theme-context";
+import { HeaderProps } from "../types";
 import classes from "./Header.module.css";
 
-const Header: React.FC<{
-  onSearch: (arg0: string) => void,
-  onChangeFilter: (arg0: string) => void
-}> = (props) => {
+const Header = (props: HeaderProps) => {
   const themeCtx = useContext(ThemeContext);
   const onChangingRoute = () => {
     props.onChangeFilter("");
@@ -17,7 +15,7 @@ const Header: React.FC<{
   };
 
   return (
-    <React.Fragment>
+    <>
       <header className={classes.header}>
         <Link to="/">
           <h1 className={classes.main__heading} onClick={onChangingRoute}>
@@ -36,7 +34,7 @@ const Header: React.FC<{
           {themeCtx.lightMode ? "Dark Mode" : "Light Mode"}
         </button>
       </header>
-    </React.Fragment>
+    </>
   );
 };
 

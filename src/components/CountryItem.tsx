@@ -1,16 +1,8 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import { CountryItemProps } from "../types";
 import classes from "./CountryItem.module.css";
 
-const CountryItem: React.FC<{
-  countryCardHandler: (e: any) => void;
-  flag: string;
-  key: string;
-  name: string;
-  population: number;
-  region: string;
-  capital: string;
-}> = (props) => {
+const CountryItem = (props: CountryItemProps) => {
   return (
     <li
       onClick={props.countryCardHandler}

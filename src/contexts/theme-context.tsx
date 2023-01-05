@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 
 const ThemeContext = React.createContext({
@@ -6,11 +5,17 @@ const ThemeContext = React.createContext({
   onChange: () => {},
 });
 
-export const ThemeContextProvider  = (props: any) => {
+type ThemeProps = {
+  children?: React.ReactNode;
+};
+
+export const ThemeContextProvider = (props: ThemeProps) => {
   const [lightMode, setLightMode] = useState(false);
 
   useEffect(() => {
-    const mode: boolean = JSON.parse(localStorage.getItem("lightMode") || 'false');
+    const mode: boolean = JSON.parse(
+      localStorage.getItem("lightMode") || "false"
+    );
     setLightMode(mode);
   }, []);
 
@@ -19,7 +24,7 @@ export const ThemeContextProvider  = (props: any) => {
   }, [lightMode]);
 
   const switchModeHandler = () => {
-    setLightMode((prevMode: boolean) => !prevMode)
+    setLightMode((prevMode: boolean) => !prevMode);
   };
   return (
     <ThemeContext.Provider
