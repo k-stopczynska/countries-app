@@ -35,7 +35,6 @@ const useFetch = () => {
       const countriesToRender: Country[] = [];
       for (const country of data) {
         countriesToRender.push({
-          key: country.name.official,
           flag: country.flags.png,
           name: country.name.common,
           nativeName: getDeepNestedObject(country.name.nativeName),

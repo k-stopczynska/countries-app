@@ -7,8 +7,9 @@ import Country from "../types";
 import classes from "./CountryCard.module.css";
 
 const CountryCard: React.FC<{
+  //union type
   countries: Country[];
-  onClicking: (e: any) => void;
+  onClick: (e: any) => void;
   key: string;
   flag: string;
   name: string;
@@ -39,7 +40,7 @@ const CountryCard: React.FC<{
   mappingBordersNames(borders, props.countries);
 
   const showAnotherCardHandler = (e: any) => {
-    props.onClicking(e.target.innerText);
+    props.onClick(e.target.innerText);
   };
 
   return (
@@ -53,12 +54,12 @@ const CountryCard: React.FC<{
         </Link>
       </div>
       <div className={classes.card__container}>
-        <div className={classes.country__flag__wrapper}>
+        <div className={classes['country__flag-wrapper']}>
           <div className={classes.image__container}>
             <img src={props.flag} alt="flag"></img>
           </div>
         </div>
-        <section className={classes.country__description__container}>
+        <section className={classes['country__description-container']}>
           <h2 className={classes.country__heading}>{props.name}</h2>
           <div className={classes.description__facts}>
             <div className={classes.description__wrapper}>

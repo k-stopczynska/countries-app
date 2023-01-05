@@ -10,29 +10,28 @@ import "./App.css";
 function App() {
   const themeCtx = useContext(ThemeContext);
   const [region, setRegion] = useState("");
-  const [country, setCountry] = useState("");
-  const [name, setName] = useState("");
+  const [countryName, setCountryName] = useState("");
+  const [selectedCountryname, setSelectedCountryName] = useState("");
   const { isLoading, error, countries } = useFetch();
-
-  const onChangingFilter = (filteredRegion: string) => {
+  const onChangeFilter = (filteredRegion: string) => {
     setRegion(filteredRegion);
-    setCountry("");
+    setCountryName("");
   };
-
-  const onSearching = (searchedCountry: string) => {
-    setCountry(searchedCountry);
+  //onSearch
+  const onSearch = (searchedCountry: string) => {
+    setCountryName(searchedCountry);
     setRegion("");
   };
-
-  const onClicking = (id: any) => {
-    setName(id);
+  //onClick
+  const onClick = (id: any) => {
+    setSelectedCountryName(id);
   };
 
   return (
     <div id="App" className={themeCtx.lightMode ? "lightMode" : ""}>
       <>
-      {error && <h1>{(error as Error).message}</h1>}
-      <Header onSearching={onSearching} onChangingFilter={onChangingFilter}/>
+        {error && <h1>{(error as Error).message}</h1>}
+        <Header onSearch={onSearch} onChangeFilter={onChangeFilter} />
       </>
       <main>
         <Routes>
@@ -43,34 +42,25 @@ function App() {
                 countries={countries}
                 isLoading={isLoading}
                 region={region}
-                country={country}
-                onChangingFilter={onChangingFilter}
-                onSearching={onSearching}
-                onClicking={onClicking}
+                country={countryName}
+                onChangeFilter={onChangeFilter}
+                onSearch={onSearch}
+                onClick={onClick}
               />
             }
           />
           <Route
-            path={`/${name}`}
-            element={
-              countries.filter((country) => country.name === name).map((country) =>
-              <CountryCard
-              onClicking={onClicking}
-              countries={countries}
-              flag={country.flag}
-              key={country.name}
-              name={country.name}
-              population={country.population}
-              region={country.region}
-              capital={country.capital}
-              nativeName={country.nativeName}
-              subregion={country.subregion}
-              languages={country.languages}
-              currencies={country.currencies}
-              borders={country.borders}
-              topLevelDomain={country.topLevelDomain}
-            ></CountryCard>)
-            }
+            path={`/${countryName}`}
+            element={countries
+              .filter((country) => country.name === countryName)
+              .map((country) => (
+                <CountryCard
+                  key={country.name}
+                  onClick={onClick}
+                  countries={countries}
+                  {...country}
+                ></CountryCard>
+              ))}
           />
         </Routes>
       </main>

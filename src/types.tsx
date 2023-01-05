@@ -1,5 +1,4 @@
 type Country = {
-    key: string;
     flag: string;
     name: string;
     nativeName: string;

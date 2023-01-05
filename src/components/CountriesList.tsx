@@ -8,12 +8,12 @@ const CountriesList: React.FC<{
   searchedCountry: string,
   isLoading: boolean,
   countries: Country[],
-  onClicking: (arg0: string) => void
+  onClick: (arg0: string) => void
 }> = (props) => {
 
   const countryCardHandler = (e: any) => {
     const countryId = e.currentTarget.id;
-   props.onClicking(countryId);
+   props.onClick(countryId);
   };
 
   return (

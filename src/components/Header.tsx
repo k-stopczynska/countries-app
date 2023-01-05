@@ -7,13 +7,13 @@ import ThemeContext from "../contexts/theme-context";
 import classes from "./Header.module.css";
 
 const Header: React.FC<{
-  onSearching: (arg0: string) => void,
-  onChangingFilter: (arg0: string) => void
+  onSearch: (arg0: string) => void,
+  onChangeFilter: (arg0: string) => void
 }> = (props) => {
   const themeCtx = useContext(ThemeContext);
   const onChangingRoute = () => {
-    props.onChangingFilter("");
-    props.onSearching("");
+    props.onChangeFilter("");
+    props.onSearch("");
   };
 
   return (
